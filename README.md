@@ -1,2 +1,19 @@
 # vue-amplify-auth-hello-world
-A very simple Vue app to exemplify Amplify Auth with AWS Cognito
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
