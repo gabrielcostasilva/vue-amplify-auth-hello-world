@@ -4,7 +4,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/register">Register</router-link> |
     <router-link to="/login">Login</router-link> |
-    <button @click="logout">Logout</button>
+    <a href="#" @click.prevent="logout">Logout</a>
   </div>
   <router-view />
 </template>
