@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+import Register from '../views/Register.vue'
+import Login from '../views/Login.vue'
+
+import { Auth } from 'aws-amplify'
 
 const routes = [
   {
@@ -10,23 +16,23 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About,
+
+    beforeEnter: (to, from, next) => {
+      Auth.currentAuthenticatedUser()
+        .then(user => next())
+        .catch(err => next({name: 'Login'}))
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: () =>
-      import(/* webpackChunkName: "register" */ '../views/Register.vue')
+    component: Register
   },
   {
     path: '/login',
     name: 'Login',
-    component: () =>
-      import(/* webpackChunkName: "login" */ '../views/Login.vue')
+    component: Login
   }
 ]
 
