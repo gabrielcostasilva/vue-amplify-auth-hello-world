@@ -17,6 +17,8 @@ export default {
     async logout() {
       try {
         await Auth.signOut()
+        alert('Successfully logged out')
+        this.$router.push('/')
       } catch (error) {
         alert(error.message)
       }

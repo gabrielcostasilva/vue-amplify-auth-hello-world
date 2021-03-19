@@ -39,6 +39,7 @@
 
 <script>
 import { Auth } from 'aws-amplify'
+
 export default {
   name: 'Login',
   data() {
@@ -55,6 +56,8 @@ export default {
       try {
         await Auth.signIn(this.email, this.password)
         alert('Successfully logged in')
+        this.$router.push('/')
+
       } catch (error) {
         alert(error.message)
         console.log(error)
