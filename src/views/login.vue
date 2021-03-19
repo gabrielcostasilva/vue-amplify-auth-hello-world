@@ -1,6 +1,9 @@
 <template>
-  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 70vh">
-    <div class="card" style="width:400px">
+  <div
+    class="container-fluid d-flex justify-content-center align-items-center"
+    style="min-height: 70vh"
+  >
+    <div class="card" style="width: 400px">
       <div class="card-header bg-primary text-white">
         <h2>Login</h2>
       </div>
@@ -20,8 +23,14 @@
               placeholder="password..."
             />
           </div>
-
-          <button class="btn btn-primary">Login</button>
+          <div v-if="!showSpinner">
+            <button class="btn btn-primary" >Login</button>
+          </div>
+          <div v-else>
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -36,10 +45,13 @@ export default {
     return {
       email: '',
       password: '',
+      showSpinner: false,
     }
   },
   methods: {
     async login() {
+      this.showSpinner = true
+
       try {
         await Auth.signIn(this.email, this.password)
         alert('Successfully logged in')
@@ -47,6 +59,8 @@ export default {
         alert(error.message)
         console.log(error)
       }
+
+      this.showSpinner = false
     },
   },
 }
